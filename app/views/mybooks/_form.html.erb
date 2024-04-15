@@ -1,0 +1,148 @@
+<style>
+.login-container{
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.login-form-1{
+    padding: 5%;
+    
+    margin-left: 25.5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-1 h3{
+    text-align: center;
+    color: #333;
+}
+
+.login-container form{
+    padding: 10%;
+}
+.btnSubmit
+{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1%;
+    border: none;
+    cursor: pointer;
+}
+.btnSubmit1
+{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+}
+
+.login-form-1 .btnSubmit{
+    font-weight: 600;
+    color: #fff;
+    background-color: #0062cc;
+}
+.login-form-1 .btnSubmit1{
+    font-weight: 600;
+    color: #fff;
+    background-color: Tomato;
+}
+.login-form-2 .btnSubmit{
+    font-weight: 600;
+    color: #0062cc;
+    background-color: #fff;
+}
+.login-form-2 .ForgetPwd{
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+.login-form-1 .ForgetPwd{
+    color: #0062cc;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+</style>
+
+
+<div class="col-md-6 login-form-1 border border-info", style="text-align: center;">  
+<%= form_with(model: mybook) do |form| %>
+  <% if mybook.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mybook.errors.count, "error") %> prohibited this mybook from being saved:</h2>
+
+      <ul>
+        <% mybook.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="form-group">
+    
+    <%= form.text_field :title, class:"form-control", placeholder:"Title" %>
+  </div>
+
+  <div class="form-group">
+    
+    <%= form.text_field :subject, class:"form-control", placeholder:"Subject" %>
+  </div>
+
+
+  <div class="form-group">
+    <%= form.label :Condition %>
+    
+      <%= form.select(:year, options_for_select([['Good','Good'],['Moderate','Moderate'],['Bad','Bad']])) %>
+      <br>
+      <%= form.text_field :description, class:"form-control", placeholder:"Book Description" %>
+   
+  </div>
+
+  
+  <div class="form-group">
+    <%= form.text_field :price, class:"form-control", placeholder:"Price" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.number_field :user_id, id: :mybook_user_id, class:"form-control", value: current_user.id, type: :hidden %>
+    
+  </div>
+
+ 
+
+  <div class="form-group">
+     <%= form.file_field :image, class:"form-control" %> 
+  </div>
+
+
+
+
+
+  <div class="form-group">
+    <%= form.label :Semester %>
+    
+      <%= form.select(:semester, options_for_select([['Semester 1','Semester 1'],['Semester 2','Semester 2'],['Semester 3','Semester 3'],['Semester 4','Semester 4'],['Semester 5','Semester 5'],['Semester 6','Semester 6'],['Semester 7','Semester 7'],['Semester 8','Semester 8']])) %>
+      <br>
+      <%= form.text_field :name, class:"form-control", placeholder:"Author" %>
+   
+  </div>
+
+
+  <div class="form-group">
+    <%# <%= form.text_field :email, class:"form-control", placeholder:"Branch" %>
+  
+      <%= form.label :Branch %>
+    
+      <%= form.select(:email, options_for_select([['Computer Science','Computer Science'],['Information Technology','Information Technology'],['Electronics & Telecommunication','Electronics & Telecommunication'],['Mechanical Engineering','Mechanical Engineering'],['Electrical Engineering','Electrical Engineering'],['Civil Engineering','Civil Engineering'],['Chemical Engineering','Chemical Engineering']])) %>
+       <br>
+      <%= form.text_field :instagram, class:"form-control", placeholder:"Book Edition" %>
+  </div>
+
+
+  <div class="form-group">
+    <%= form.submit class:"btnSubmit" %> |
+    <%= link_to 'Back', mybooks_path, class:"btnSubmit" %>
+  </div>
+<% end %>
+</div>
